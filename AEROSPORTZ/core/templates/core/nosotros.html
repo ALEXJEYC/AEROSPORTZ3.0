@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% load static %}
+<h4 class="display-4 text-center">NOSOTROS</4>
+{% if request.user.is_authenticated %}
+<hr>
+<h1   class="display-4 text-center" >
+    {{ user.username | upper }}, BIENVENID@😊
+</h1>
+<hr>
+{% endif %}
+
+  
+<div class="hero-wrap hero-bread" >
+  <img src= "{% static "image/carusel-deportivo2.jpg" %}"/>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <h1 class="mb-0 bread">SOBRE NOSOTROS</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center">
+                    <img src= "{% static "image/aero.png" %}" alt= "logo">
+
+          
+                  </div>
+                  <div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
+            <div class="heading-section-bold mb-4 mt-md-5">
+                <div class="ml-md-0">
+                  <h2 class="mb-4">Bienvenido a la tienda online de AEROSPORTZ</h2>
+              </div>
+            </div>
+            <div class="pb-md-5">
+                <p>Somos una tienda dedicada a la venta de ropa deportiva, contamos con servicio de atencion al cliente las 24 horas, entregamos productos de alta calidad, directo desde las distribuidoras oficiales.</p>
+                          <p><a href="{% url 'productos' %}" class="btn btn-primary">Tienda online</a></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+    <div class="container py-4">
+      <div class="row d-flex justify-content-center py-5">
+        <div class="col-md-6">
+            <h2 style="font-size: 22px;" class="mb-0">Subscribete con nosotros</h2>
+            <span>Inscribete con tu correo para recibir ofertas y productos en descuento</span>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <form action="#" class="subscribe-form">
+            <div class="form-group d-flex">
+              <input type="text" class="form-control" placeholder="Ingresa tu correo aqui">
+              <input type="submit" value="Subscribe" class="submit px-3">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>	
+
+
+
+{% endblock %}

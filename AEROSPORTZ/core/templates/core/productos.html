@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h4 class="display-4 text-center">TIENDA</4>
+{% if request.user.is_authenticated %}
+    <hr>
+    <h1   class="display-4 text-center" >
+        {{ user.username | upper }}, BIENVENID@😊
+    </h1>
+    <hr>
+{% endif %}
+
+
+
+    <!-- ULTIMOS 3 PRODUCTOS -->
+    <section class="row">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>{{message}}</strong> 
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Titulo -->
+        <div class="col-12 mb-4 ">
+            <h1 class="display-4 text-center">Ultimos Productos</h1>
+        </div>
+
+        <!-- PRODUCTOS -->
+        {% for producto in productos_top3 %}
+            <div class="col-12 col-sm-6 col-md-4 mb-3">
+                <div class="card card-img-3-producto-home">
+                    <div class=" h-100 ">
+                        <img 
+                        class="card-img-top mx-auto"
+                        src="{{MEDIA_URL}}{{producto.imagen.url}}"
+                        alt="{{producto.titulo}}"
+                        >
+                    </div>
+                    <div class="card-body card-body-3-productos-home">
+                        <h4 class="card-title text-truncate">{{ producto.titulo.title.title|truncatechars:25 }}</h4>
+                        <p class="card-text ">{{ producto.descripcion.capitalize|truncatechars:70 }}</p>
+                        <a href="{% url 'producto_show' producto.id %}" class="btn btn-success btn-block">Ver</a>
+                        
+                        {% if user.is_superuser %}
+                            <a href="{% url 'producto_edit' producto.id %}" class="btn btn-outline-secondary btn-block">Editar</a>
+                            <a href="{% url 'producto_delete' producto.id %}" class="btn btn-outline-danger btn-block">Eliminar</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+    
+
+
+    <!-- MAS PRODUCTOS -->
+    <section class="row mt-4">
+        <!-- Titulo -->
+        <div class="col-12 mb-4">
+            <h2 class="display-4 text-center">Mas Productos</h2>
+        </div>
+
+        <!-- Otros productos -->
+        <div class="row row-cols-1 row-cols-md-3 container justify-content-center">
+            {% for producto in productos %}
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card h-100 card-img-producto-home">
+                        <src="https://picsum.photos/200/200?random={{ forloop.counter }}" >
+                        <img 
+                        class="card-img-top mx-auto"
+                        
+                        src="{{MEDIA_URL}}{{producto.imagen.url}}"
+                        alt="ultimo producto 1"
+                        >
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{ producto.titulo.title|truncatechars:28 }}</h4>
+                            <p class="card-text ">{{ producto.descripcion.capitalize|truncatechars:50 }}</p>
+                            <a href="{% url 'producto_show' producto.id %}" class="btn btn-success btn-block">Ver</a>
+
+                            {% if user.is_superuser %}
+                                <a href="{% url 'producto_edit' producto.id %}" class="btn btn-outline-secondary btn-block">Editar</a>
+                                <a href="{% url 'producto_delete' producto.id %}" class="btn btn-outline-danger btn-block">Eliminar</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+  
+
+{% endblock %}

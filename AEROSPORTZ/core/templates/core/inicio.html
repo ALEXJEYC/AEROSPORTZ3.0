@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<h4 class="display-4 text-center">INICIO</h4>
+{% if request.user.is_authenticated %}
+<hr>
+<h1   class="display-4 text-center" >
+    {{ user.username | upper }}, BIENVENID@😊
+</h1>
+<hr>
+{% endif %}
+<div id="carouselExampleAutoplaying" class="carousel slide mx-auto" data-bs-ride="carousel" style= "width: 100%;
+height: auto;">
+    <div class="carousel-inner mx-auto">
+      <div class="carousel-item active mx-auto">
+        <img src= "{% static "image/carusel-deportivo1.jpg" %}" alt= "imagencarrusel">
+      </div>
+      <div class="carousel-item">
+        <img src= "{% static "image/carusel-deportivo2.jpg" %}" alt= "imagencarrusel">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+   <hr>
+   <div class="card mx-auto" style="width: 18rem;">
+    <img src= "{% static "image/aero.png" %}" alt= "logo">
+    <div class="card-body">
+      <h5 class="card-title">AEROSPORTZ</h5>
+      <p class="card-text">Quienes somos</p>
+      <a href="{% url 'nosotros' %}" class="btn btn-primary text-center">contactanos</a>
+    </div>
+    
+  </div>
+  <hr>
+{% endblock %}
